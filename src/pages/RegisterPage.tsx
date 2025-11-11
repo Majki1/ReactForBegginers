@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../App.css";
 
 const RegisterPage: React.FC = () => {
   const [user, setUser] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setUser(prevState => ({
+    setUser((prevState) => ({
       ...prevState,
       [id]: value,
     }));
@@ -21,17 +21,17 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/users', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8080/api/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
 
       const data = await response.json();
       console.log(data);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   };
@@ -71,7 +71,9 @@ const RegisterPage: React.FC = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn">Register</button>
+          <button type="submit" className="btn">
+            Register
+          </button>
         </form>
         <p className="form-footer">
           Already have an account? <Link to="/">Login here</Link>
